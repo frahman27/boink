@@ -42,10 +42,17 @@ function showQuote(){
 function swingMalletTowardBoy(){
   const b = boy.getBoundingClientRect();
   const s = stage.getBoundingClientRect();
-  mallet.style.left = `${b.left - s.left - 10}px`;
-  mallet.style.top  = `${b.top  - s.top  - 10}px`;
+  const m = mallet.getBoundingClientRect(); // current hammer size
+
+  const cx = (b.left - s.left) + b.width/2 - m.width/2;
+  const cy = (b.top  - s.top ) + b.height/2 - m.height/2;
+
+  mallet.style.left = `${cx}px`;
+  mallet.style.top  = `${cy}px`;
+
   mallet.classList.remove('swing'); void mallet.offsetWidth; mallet.classList.add('swing');
 }
+
 
 function confetti(){
   const colors = ["#ff7aa2","#ffd166","#8ad6ff","#b3ffb3","#cdb4ff"];
