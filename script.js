@@ -8,15 +8,15 @@ const btn   = $('#stressBtn');
 const bonk  = $('#bonk');
 
 const QUOTES = [
-  "You’ve done harder things. This is light work. 💪",
-  "Brains + grit = You. Coffee is just a sidekick.",
-  "Tiny steps > big stress. One page at a time.",
-  "Proud of you. Keep going. Future you is cheering.",
-  "Mistakes are data. Adjust and roll. 📈",
-  "You’re not behind. You’re building momentum.",
-  "If it’s confusing, your brain is growing. Nice.",
-  "Rest is strategy, not weakness.",
-  "Focus 25 min. Dance 5. Repeat. 💃",
+  "lababy you're BDE is too strong to give up 💪",
+  "Imagine depending on a boy eww",
+  "think about all the $$ you're gonna make",
+  "it's not that deep, you'll make itt",
+  "it's okay, duck it we ball 📈",
+  "people dumber than you are gonna do this panel",
+  "you got this lbb",
+  "think about decemberr",
+  "ive run out of motivational quotes 💃",
   "You’re the curve. The curve fears you.",
 ];
 
