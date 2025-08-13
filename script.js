@@ -41,17 +41,23 @@ function showQuote(){
 
 function swingMalletTowardBoy(){
   const b = boy.getBoundingClientRect();
+  const g = girl.getBoundingClientRect();
   const s = stage.getBoundingClientRect();
-  const m = mallet.getBoundingClientRect(); // current hammer size
+  const m = mallet.getBoundingClientRect();
 
-  const cx = (b.left - s.left) + b.width/2 - m.width/2;
-  const cy = (b.top  - s.top ) + b.height/2 - m.height/2;
+  // Start position: near girl's right hand
+  const startX = (g.left - s.left) + g.width * 0.75 - m.width / 2;
+  const startY = (g.top - s.top) + g.height * 0.3 - m.height / 2;
 
-  mallet.style.left = `${cx}px`;
-  mallet.style.top  = `${cy}px`;
+  mallet.style.left = `${startX}px`;
+  mallet.style.top  = `${startY}px`;
 
-  mallet.classList.remove('swing'); void mallet.offsetWidth; mallet.classList.add('swing');
+  // Trigger animation
+  mallet.classList.remove('swing');
+  void mallet.offsetWidth;
+  mallet.classList.add('swing');
 }
+
 
 
 function confetti(){
