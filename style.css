@@ -137,18 +137,28 @@ body{
 
 /* Quotes */
 #quoteBubble{
-  position:absolute;
-  top:12px; left:50%;
-  transform:translateX(-50%) translateY(-20px);
-  background:white;
-  border:2px solid var(--accent);
-  padding:.65rem .9rem;
-  border-radius:14px;
-  box-shadow:0 8px 18px rgba(0,0,0,.08);
-  max-width:min(82ch, 86%);
-  font-size:clamp(14px, 2vw, 18px);
-  opacity:0;
+  position: absolute;
+  top: 65%; /* lower on the stage */
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  color: var(--accent); /* matches your theme pink */
+  font-size: clamp(18px, 3vw, 28px);
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  max-width: min(80ch, 80%);
+  opacity: 0;
 }
+
+#quoteBubble.show{
+  animation: floatIn .35s ease-out forwards,
+             fadeAway 3.8s 1.2s ease-out forwards;
+}
+
+@keyframes floatIn{
+  from{opacity:0; transform:translateX(-50%) translateY(-16px);}
+  to{opacity:1; transform:translateX(-50%) translateY(0);}
+}
+
 /* new: ~2× longer */
 #quoteBubble.show{
   animation: floatIn .35s ease-out forwards,
