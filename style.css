@@ -225,4 +225,21 @@ body{
     z-index:3;
   }
 }
+/* Put the hammer at stage origin; we’ll move it via transform */
+#mallet{
+  left:0; 
+  top:0; 
+  transform-origin: 15% 85%; /* handle end */
+}
+
+/* Subtle lean when she swings */
+#girl{
+  transition: transform .25s ease;
+}
+
+/* Stacking order for clarity (optional, but explicit) */
+#girl{ z-index:1; }
+#mallet{ z-index:2; }
+#boy{ z-index:3; }
+#quoteBubble{ z-index:4; }
 
