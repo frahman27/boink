@@ -10,15 +10,15 @@ const bonk   = $('#bonk');
 
 // ---------- DATA ----------
 const QUOTES = [
-  "You’ve done harder things. This is light work. 💪",
-  "Brains + grit = you. Coffee is just a sidekick.",
-  "Tiny steps > big stress. One page at a time.",
-  "Proud of you. Keep going. Future you is cheering.",
+  "lababy your BDE is too strong to give up 💪",
+  "Brains + grit = you. Chaa is just a sidekick.",
+  "Tiny steps > big stress. Get it, tiny steps?? :)",
+  "Imagine all the $$$ you're gonne be making",
   "Mistakes are data. Adjust and roll. 📈",
-  "You’re not behind. You’re building momentum.",
-  "If it’s confusing, your brain is growing. Nice.",
-  "Rest is strategy, not weakness.",
-  "Focus 25 min. Dance 5. Repeat. 💃",
+  "Cheering 4u <333",
+  "You've done this for 26 years, you can do it for 1 more",
+  "Rest is strategy, not weakness. But also please rest",
+  "I've run out of quotes 💃",
   "You’re the curve. The curve fears you."
 ];
 
