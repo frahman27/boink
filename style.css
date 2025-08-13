@@ -105,22 +105,36 @@ body{
 }
 
 /* Hammer */
-#mallet{
-  position:absolute;
-  width:64px; height:64px;
-  left:-200px; top:-200px;
-  transform-origin:80% 10%;
-  opacity:0; z-index:2;
+#mallet {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  left: -200px;
+  top: -200px;
+  transform-origin: 15% 85%; /* handle end pivot */
+  opacity: 0;
+  z-index: 2; /* above girl */
 }
+
 #mallet::after{
   content:"🔨"; font-size:64px; line-height:64px; display:block;
 }
 #mallet.swing{ animation:swing .35s cubic-bezier(.2,.9,.2,1) forwards; }
-@keyframes swing{
-  0%{opacity:1; transform:rotate(-80deg) scale(1)}
-  80%{opacity:1; transform:rotate(10deg) scale(1)}
-  100%{opacity:0; transform:rotate(0) scale(.98)}
+@keyframes swing {
+  0% {
+    opacity: 1;
+    transform: rotate(-60deg) scale(1);
+  }
+  70% {
+    opacity: 1;
+    transform: rotate(20deg) scale(1.02); /* over-swing */
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(0deg) scale(.98);
+  }
 }
+
 
 /* Quotes */
 #quoteBubble{
