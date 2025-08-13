@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#ffd9e6" />
+  <title>Stressbuster 💥</title>
+  <link rel="preload" href="assets/bonk.mp3" as="audio">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="app">
+    <h1 id="title" class="glow">Stressbuster for You 💖</h1>
+
+    <!-- Stage keeps a pleasing 16:10 ratio and scales fluidly -->
+    <section id="stage" aria-live="polite">
+      <!-- Use WebP with PNG fallback for smaller downloads -->
+      <picture>
+        <source id="girl-src" srcset="assets/girl.webp" type="image/webp">
+        <img id="girl" class="character" src="assets/girl.png" alt="Her (cartoon)" decoding="async">
+      </picture>
+
+      <picture>
+        <source id="boy-src" srcset="assets/boy.webp" type="image/webp">
+        <img id="boy" class="character" src="assets/boy.png" alt="You (cartoon)" decoding="async">
+      </picture>
+
+      <!-- hammer; replace with your own PNG if you like -->
+      <div id="mallet" aria-hidden="true"></div>
+
+      <div id="quoteBubble" role="status" aria-atomic="true"></div>
+    </section>
+
+    <button id="stressBtn" type="button" aria-label="Stressbuster">
+      Stressbuster ✨
+    </button>
+
+    <audio id="bonk" src="assets/bonk.mp3" preload="auto"></audio>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
