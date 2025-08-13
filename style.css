@@ -237,9 +237,21 @@ body{
   transition: transform .25s ease;
 }
 
-/* Stacking order for clarity (optional, but explicit) */
-#girl{ z-index:1; }
-#mallet{ z-index:2; }
-#boy{ z-index:3; }
-#quoteBubble{ z-index:4; }
 
+
+/* Make sure stage is the stacking root */
+#stage { position: relative; }
+
+/* Layering: girl < boy < mallet < quotes */
+#girl { z-index: 1; transition: left .28s ease, bottom .28s ease, transform .28s ease; }
+#boy  { z-index: 2; }
+#mallet { z-index: 3; }        /* <- hammer above the boy */
+#quoteBubble { z-index: 4; }
+
+/* Hammer pivot and neutral origin (we animate via transforms) */
+#mallet{
+  left: 0;
+  top: 0;
+  transform-origin: 15% 85%;
+  opacity: 0;
+}
