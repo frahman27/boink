@@ -1,0 +1,181 @@
+:root{
+  --bg:#fff6fb;
+  --panel:#ffe8f1;
+  --ink:#232326;
+  --accent:#ff7aa2;
+  --accent-2:#8ad6ff;
+  --ring: 0 0 0 6px rgba(255,122,162,.18);
+  --radius:18px;
+}
+
+/* Dark mode polish */
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#121217;
+    --panel:#1b1b22;
+    --ink:#eaeaf3;
+    --accent:#ff86ab;
+    --accent-2:#7dd3fc;
+  }
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font:16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(1200px 600px at 12% -10%, #fff 0%, transparent 60%),
+    radial-gradient(800px 600px at 120% 0%, #f0f8ff 0%, transparent 60%),
+    var(--bg);
+  -webkit-font-smoothing:antialiased;
+}
+
+#app{
+  max-width:min(1080px, 94vw);
+  margin:clamp(8px, 2.5vh, 24px) auto;
+  padding:clamp(4px, 1vh, 12px);
+}
+
+/* Title */
+#title{
+  margin:0 0 clamp(10px,1.8vh,16px);
+  text-align:center;
+  font-size:clamp(20px, 2.8vw, 32px);
+}
+.glow{ text-shadow:0 2px 12px rgba(255,122,162,.35); }
+
+/* Stage keeps aspect ratio and scales nicely */
+#stage{
+  position:relative;
+  aspect-ratio:16/10;
+  height:auto;
+  min-height:420px;
+  border-radius:var(--radius);
+  overflow:hidden;
+  background:
+    linear-gradient(180deg, #fff, var(--panel) 60%, #fff 100%);
+  box-shadow:0 12px 36px rgba(0,0,0,.08);
+  isolation:isolate;
+  padding:0;
+}
+
+/* Characters */
+.character{
+  position:absolute;
+  user-select:none;
+  -webkit-user-drag:none;
+  pointer-events:none;
+  will-change:transform;
+  filter:drop-shadow(0 8px 14px rgba(0,0,0,.18));
+}
+
+/* Girl: left, anchored to floor */
+#girl{
+  width:clamp(120px, 20svw, 220px);
+  left:clamp(8px, 2.4svw, 18px);
+  bottom:clamp(6px, 1.6svh, 14px);
+  transform-origin:60% 90%;
+}
+
+/* Boy: appears in random spot */
+#boy{
+  width:clamp(110px, 18svw, 200px);
+  left:50%;
+  top:70%;
+  opacity:0;
+  transform:translate(-50%, -50%) scale(.6);
+}
+
+#boy.pop{ animation:popUp .35s ease-out forwards; }
+#boy.bonked{ animation:bonk .25s ease-in both; }
+
+@keyframes popUp{
+  0%{opacity:0; transform:translate(-50%, -30%) scale(.2)}
+  80%{opacity:1; transform:translate(-50%, -55%) scale(1.06)}
+  100%{opacity:1; transform:translate(-50%, -50%) scale(1)}
+}
+
+@keyframes bonk{
+  0%{transform:translate(-50%, -50%) rotate(0) scale(1)}
+  25%{transform:translate(-50%, -50%) rotate(-6deg) scale(.98)}
+  60%{transform:translate(-50%, -50%) rotate(6deg) scale(.95)}
+  100%{transform:translate(-50%, -50%) rotate(0) scale(1)}
+}
+
+/* Hammer */
+#mallet{
+  position:absolute;
+  width:64px; height:64px;
+  left:-200px; top:-200px;
+  transform-origin:80% 10%;
+  opacity:0; z-index:2;
+}
+#mallet::after{
+  content:"🔨"; font-size:64px; line-height:64px; display:block;
+}
+#mallet.swing{ animation:swing .35s cubic-bezier(.2,.9,.2,1) forwards; }
+@keyframes swing{
+  0%{opacity:1; transform:rotate(-80deg) scale(1)}
+  80%{opacity:1; transform:rotate(10deg) scale(1)}
+  100%{opacity:0; transform:rotate(0) scale(.98)}
+}
+
+/* Quotes */
+#quoteBubble{
+  position:absolute;
+  top:12px; left:50%;
+  transform:translateX(-50%) translateY(-20px);
+  background:white;
+  border:2px solid var(--accent);
+  padding:.65rem .9rem;
+  border-radius:14px;
+  box-shadow:0 8px 18px rgba(0,0,0,.08);
+  max-width:min(82ch, 86%);
+  font-size:clamp(14px, 2vw, 18px);
+  opacity:0;
+}
+#quoteBubble.show{
+  animation:floatIn .35s ease-out forwards, fadeAway 1.9s .9s ease-out forwards;
+}
+@keyframes floatIn{
+  from{opacity:0; transform:translateX(-50%) translateY(-16px)}
+  to{opacity:1; transform:translateX(-50%) translateY(0)}
+}
+@keyframes fadeAway{ to{opacity:0} }
+
+/* Button */
+#stressBtn{
+  display:block;
+  width:min(560px, 92svw);
+  margin:clamp(12px, 2vh, 16px) auto calc(env(safe-area-inset-bottom) + 8px);
+  padding:14px 18px;
+  font-size:clamp(16px, 2.2vw, 20px);
+  border-radius:14px;
+  color:white;
+  background:linear-gradient(135deg, var(--accent), #ff95b3 60%, var(--accent-2));
+  border:none;
+  box-shadow:0 10px 22px rgba(255,122,162,.35);
+  cursor:pointer;
+  transition:transform .06s ease, box-shadow .2s ease;
+}
+#stressBtn:hover{ box-shadow:var(--ring); }
+#stressBtn:active{ transform:scale(.98) }
+
+/* Confetti */
+.confetti{
+  position:absolute; width:8px; height:12px; opacity:.9; z-index:3; top:-12px;
+  animation:fall linear forwards;
+}
+@keyframes fall{ to{ transform:translateY(100%) rotate(720deg); opacity:1 } }
+
+/* Motion safety */
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important; transition:none!important}
+}
+
+/* Desktop tweaks */
+@media (min-width: 900px){
+  #stage{ max-height:72vh; }
+}
