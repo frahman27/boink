@@ -43,20 +43,31 @@ function swingMalletTowardBoy(){
   const b = boy.getBoundingClientRect();
   const g = girl.getBoundingClientRect();
   const s = stage.getBoundingClientRect();
-  const m = mallet.getBoundingClientRect();
 
-  // Start position: near girl's right hand
-  const startX = (g.left - s.left) + g.width * 0.75 - m.width / 2;
-  const startY = (g.top - s.top) + g.height * 0.3 - m.height / 2;
+  // centers relative to the stage
+  const boyCX  = (b.left - s.left) + b.width / 2;
+  const boyCY  = (b.top  - s.top ) + b.height / 2;
 
-  mallet.style.left = `${startX}px`;
-  mallet.style.top  = `${startY}px`;
+  // approximate her right-hand spot (tweak 0.75 / 0.30 as needed for your PNG)
+  const handX  = (g.left - s.left) + g.width * 0.75;
+  const handY  = (g.top  - s.top ) + g.height * 0.30;
 
-  // Trigger animation
-  mallet.classList.remove('swing');
-  void mallet.offsetWidth;
-  mallet.classList.add('swing');
+  // aim angle in degrees
+  const angle = Math.atan2(boyCY - handY, boyCX - handX) * 180 / Math.PI;
+
+  // lean her slightly toward the target
+  girl.style.transform = `rotate(${Math.max(-8, Math.min(8, (angle-0)/18))}deg)`;
+  setTimeout(()=>{ girl.style.transform = ''; }, 420);
+
+  // animate hammer translation + rotation using Web Animations API
+  const keyframes = [
+    { transform: `translate(${handX}px, ${handY}px) rotate(${angle - 60}deg)`, opacity: 1 },
+    { transform: `translate(${boyCX - 32}px, ${boyCY - 32}px) rotate(${angle + 10}deg)`, opacity: 1 }, // 64px hammer, center on boy
+    { transform: `translate(${boyCX - 32}px, ${boyCY - 32}px) rotate(${angle}deg)`, opacity: 0 }
+  ];
+  mallet.animate(keyframes, { duration: 360, easing: 'cubic-bezier(.2,.9,.2,1)', fill: 'both' });
 }
+
 
 
 
