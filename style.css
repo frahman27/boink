@@ -136,9 +136,12 @@ body{
   font-size:clamp(14px, 2vw, 18px);
   opacity:0;
 }
+/* new: ~2× longer */
 #quoteBubble.show{
-  animation:floatIn .35s ease-out forwards, fadeAway 1.9s .9s ease-out forwards;
+  animation: floatIn .35s ease-out forwards,
+             fadeAway 7s 1.2s ease-out forwards;
 }
+
 @keyframes floatIn{
   from{opacity:0; transform:translateX(-50%) translateY(-16px)}
   to{opacity:1; transform:translateX(-50%) translateY(0)}
